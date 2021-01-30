@@ -1,0 +1,20 @@
+body{background-color: #fff; padding: 28px 60px 50px 30px;}
+.el-table th.is-leaf{background-color: #f5f7fb; border: 1px solid #EBEEF5; border-width: 1px 0; color: #7689a6; font-size: 12px; padding: 4px 0; font-weight: normal;}
+.el-popover{text-align: center;}
+.el-table .cell a{padding: 0 15px;}
+.el-table .el-progress-bar{padding-right: 0; width: 80%; margin: 0 10%;}
+.el-table .el-progress__text{display: none;}
+.el-table .cell a.blue img,.el-table .cell a.red img{margin-right: 15px;}
+.filter_t .el-select{display: block;}
+.avatar-uploader .el-upload { border: 1px solid #DCDFE6;  cursor: pointer; position: relative; overflow: hidden; width: 117px; height: 72px;text-align: center;line-height: 72px;}
+.avatar-uploader .el-upload:hover {border-color: #409EFF; }
+.avatar-uploader-icon {padding-top: 14px;   }
+.avatar{width: 117px; height: 72px; display: block;}
+.zujian td{font-size: 12px; text-align: center; padding: 5px; white-space: nowrap;}
+.zujian td .el-icon-circle-plus{font-size: 20px; color: #1296db;}
+.zujian td .el-icon-error{font-size: 20px; color: #737373;}
+.zujian td a{color: #2a97ff; text-decoration: underline;}
+.zujian .el-input input{text-align: center;}
+.edittexing .tit{font-size: 12px; padding-bottom: 30px; line-height: 20px;}
+.edittexing .tit span{color: #999; padding-right: 18px;}
+.elrulesform .tpl .el-select{width: 100%;}

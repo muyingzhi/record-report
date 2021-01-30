@@ -1,0 +1,55 @@
+body{background:url(../images/bg2.png) no-repeat;background-size:100% 100%}
+.middle{position:relative}
+.bottomcopyr,.middle,.top{width:100%}
+.top{height:80px;background:url() no-repeat;background-size:9%;background-position:13%}
+.bottomcopyr{color:rgba(225,225,225,.5)}
+.middle-box{width:800px;box-shadow:0 0 15px #ccc;border-radius:5px;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;height:400px;background-color:#ddd;background:url(../images/AI.png) 0 50% #fff no-repeat;background-size:52%}
+.copyr{font-size:12px;text-align:center;line-height:24px;padding:7px 0}
+.loginbox{height:100%;width:48%;float:right;background-color:#fff}
+.find-pwd,.find-pwd-person{height:100%;width:65%;display:none;padding:20px 40px 0;background-color:#fff}
+.sName{width:100%;font-size:22px;text-align:center;line-height:75px}
+.sName>span{font-size:16px;width:50%;float:left;line-height:50px;text-align:center;background-color:#f5f5f5}
+.sName>.act{background-color:#fff;color:#2a97ff}
+.selbox{width:100%;height:calc(100% - 50px);height:-webkit-calc(100% - 50px);height:-moz-calc(100% - 50px)}
+.selbox>div{width:100%;height:100%}
+.login-con{padding:0 45px 20px 45px}
+.login-con-person{padding:10px 60px 0}
+.card{font-size:12px;color:#2a97ff}
+.qiehuan{font-size:12px;text-align:right;color:#2a97ff;cursor:pointer}
+.login-con-person>.nub-d>.sj,.login-con-person>.nub-d>.ss,.login-con-person>.nub-d>.user,.login-con-person>.nub-d>.veri,.login-con-person>.pwd-d>.pwd,.login-con-person>.yzm-d>.photokey,.persond1>input{border:1px solid #ccc;height:35px;padding:0 25px 0 45px;border-radius:4px;font-size:12px}
+.jl{margin-top:10px}
+#overPerson{text-align:center;font-size:12px}
+.mm,.photokey,.pwd,.sj,.ss,.user,.veri,.xm{border:1px solid #ccc;height:40px;padding:11px 25px 11px 45px;border-radius:4px;font-size:12px}
+.user{background:url(../images/zh.png) 11px center no-repeat!important}
+.xm{background:url(../images/mima.png) 11px center no-repeat}
+.login-con-person>.pwd-d>.pwd{float:left;width:59%;background:url(../images/mima.png) 11px center no-repeat}
+.mm,.pwd,.pwd-person{width:59%;background:url(../images/mima.png) 11px center no-repeat}
+.mm,.pwd,.sj,.ss,.user,.veri,.xm{width:100%}
+.photokey{background:url(../images/yzm.png) 11px center no-repeat;float:left;width:59%}
+.pwds{float:right;width:39%;border:1px solid #ccc;height:39px;border-radius:4px}
+.pwds img{width: 100%; height: 100%;}
+.zidong{color:#2a97ff;font-size:12px;padding-left:40px}
+.find-pwd .phoKey{height:42px}
+.find-pwd-person .phoKey{height:35px}
+.login-con-person .phoKey{float:right;width:39%;border:1px solid #ccc;text-align:center;line-height:34px;border-radius:4px}
+.phoKey{float:right;width:39%;border:1px solid #ccc;text-align:center;line-height:40px;border-radius:4px}
+.login-box .pwd{background:url(include/images/pwd.png) 11px center no-repeat}
+.layui-form{margin-left:12px}
+.nub-d i.nub-contr{display:none;position:absolute;right:0;width:36px;height:39px;top:0;background:url(../images/quxiao.png) center no-repeat;background-size:37.5%;cursor:pointer}
+.nub-d:hover i.nub-contr{display:block}
+.offs{position:absolute;right:0;width:36px;height:39px;top:0}
+i.pwd-contr{position:absolute;right:0;width:36px;height:39px;top:0;background:url(../images/kai.png) center no-repeat;background-size:37.5%;cursor:pointer}
+.guan{position:absolute;right:0;width:36px;height:39px;top:0;background:url(../images/guang.png) center no-repeat;background-size:37.5%;cursor:pointer}
+.yingchang{display:none;position:relative}
+.wenzi{padding-left:22px;font-size:12px;color:#333;background:url(../images/gth.png) 1% 54% no-repeat;background-size:3.5%}
+.pwd::-webkit-input-placeholder,.user::-webkit-input-placeholder,.veri::-webkit-input-placeholder,.xm::-webkit-input-placeholder{color:#ccc;font-size:12px}
+.mm-d{display:none}
+.nub-d{width:100%;position:relative}
+.mm-d,.nub-d,.pwd-d,.yzm-d{margin-top:12px;position:relative}
+.register,.register-person{font-size:12px;color:#9a9a9a;cursor:pointer}
+.rem-psd{font-size:12px;margin:10px 0 10px;color:#666}
+.rem-psd input[type=checkbox]{margin:4px 6px 0 0}
+input[type=button]{width:100%;height:42px;background:#2a97ff;color:#fff;font-size:16px}
+.return{margin-top:8px;color:#2a97ff;font-size:12px;cursor:pointer}
+.findImg{width:17px;margin:-1px 5px 0 0}
+.find-wenzi{font-size:16px}

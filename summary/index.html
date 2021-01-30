@@ -1,0 +1,142 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../include/element/index.css" media="all">
+		<link rel="stylesheet" href="../include/style/common.css" media="all">
+		<link rel="stylesheet" href="../include/style/tableList.css">
+	</head>
+
+	<body>
+		<div class="cont">
+			<table class="filter_t mb20">
+				<tr>
+					<td>客户姓名</td>
+					<td>
+						<el-input v-model="fullname" placeholder="请输入" size="small"></el-input>
+					</td>
+					<td><a class="bluebtn mr20 ml40" @click="loadtable"><img src="../include/images/table/cx.png" alt=""> 查询</a> <a
+						 class="bluebtn" @click="handleadd"><i class="el-icon-plus"></i> 新增</a></td>
+				</tr>
+			</table>
+			<el-table :data="tableData" style="width: 100%" stripe="true">
+				</el-table-column>
+				<el-table-column type="index" width="50" label="序号">
+				</el-table-column>
+				<el-table-column label="姓名">
+					<template slot-scope="scope">
+						<span>{{ scope.row.fullname }}</span>
+					</template>
+				</el-table-column>
+				<el-table-column label="性别">
+					<template slot-scope="scope">
+						<span>{{ scope.row.sex }}</span>
+					</template>
+				</el-table-column>
+				<el-table-column label="评估结果">
+					<template slot-scope="scope">
+						<span>{{ scope.row.oridata }}</span>
+					</template>
+				</el-table-column>
+				<el-table-column label="收费金额">
+					<template slot-scope="scope">
+						<span>{{ scope.row.tpl }}</span>
+					</template>
+				</el-table-column>
+				<el-table-column label="操作" width="150" fixed="right" align="center">
+					<template slot-scope="scope">
+						<el-tooltip class="item" content="编辑">
+							<a @click="handleEdit(scope.$index, scope.row)"><img src="../include/images/table/edit-blue.png" /></a>
+						</el-tooltip>
+						<el-tooltip class="item" content="删除">
+							<a @click="handleDelete(scope.$index, scope.row)"><img src="../include/images/table/del.png" /></a>
+						</el-tooltip>
+					</template>
+				</el-table-column>
+			</el-table>
+			<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+			 :page-sizes="[10, 20, 50, 100]" :page-size="pageSize" layout="total, prev, pager, next, sizes, jumper" :total="totalNum">
+			</el-pagination>
+
+			<!-- 新增编辑弹框	 -->
+			<el-dialog title="新增页面" :visible.sync="dialogVisible" width="800px" @close="closeDialog">
+				<div slot="title" v-if="examclick">新增</div>
+				<div slot="title" v-else>编辑</div>
+				<el-form :model="form" :rules="rules" label-width="100px" label-position="right" ref="form">
+					<el-row :gutter="20">
+						<el-col :span="5">
+							<el-form-item label="姓名：">刘开里
+							</el-form-item>
+						</el-col>
+						<el-col :span="4">
+							<el-form-item label="性别：">男		
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item label="出生日期：">2000-01-01
+							</el-form-item>
+						</el-col>
+						<el-col :span="6">
+							<el-form-item label="档案号：" prop="tpl">001001001
+							</el-form-item>
+						</el-col>
+					</el-row>
+					<el-row :gutter="20">
+						<el-col :span="12">
+							<el-form-item label="评估结果">
+								<el-input v-model="form.followDate" placeholder="请输入" size="small"></el-input>
+							</el-form-item>
+						</el-col>
+						<el-col :span="12">
+							<el-form-item label="收费">	
+								<el-input v-model="form.followDate" placeholder="请输入" size="small"></el-input>
+							</el-form-item>
+						</el-col>
+					</el-row>
+					<el-row :gutter="20">
+					<a class="bluebtn mr20" @click="handleEdit('form')" v-if="examclick">保存</a>
+					<a class="bluebtn mr20" @click="editparam('form')" v-else>保存</a>
+					<a class="graybtn_b" @click="txdialogVisible = false">取消</a>
+					</el-row>
+				<table width="100%" class="zujian">
+					<tr>
+						<td width="80">次数</td>
+						<td>检测项目</td>
+						<td>方案</td>
+						<td>时间</td>
+						<td>护士签名</td>
+					</tr>
+					<tr class="list" v-for="(domain, index) in form.list">
+						<td>
+							<el-input v-model="domain.biaoshi" placeholder="请输入" size="small"></el-input>
+						</td>
+						<td>
+							<el-input v-model="domain.name" placeholder="请输入" size="small"></el-input>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+			</el-dialog>
+		</div>
+		<script src="../include/lib/polyfill.min.js"></script>
+		<script src="../include/lib/browser.min.js"></script>
+		<script src="../include/lib/jquery-1.11.0.min.js"></script>
+		<script src="../include/lib/vue.min.js"></script>
+		<script src="../include/element/index.js"></script>
+		<script src="../include/lib/axios.min.js"></script>
+		<script src="../include/lib/config.js"></script>
+		<script src="include/js/template.js"></script>
+	</body>
+</html>
