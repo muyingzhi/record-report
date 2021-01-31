@@ -2,6 +2,18 @@ var initdata = new Vue({
 	el: '.cont',
 	data: {
 		fullname:'',
+		isShowSelect:false,
+		patients:[{
+			fullname:"张三",
+			sex:"男",
+			birthday:"2019-01-01",
+			address:"郑州市xxxx"
+		},{
+			fullname:"里斯本",
+			sex:"男",
+			birthday:"2010-01-01",
+			address:"郑州市xxxx"
+		}],
 		tableData: [{
 				name: "就诊信息统计页面",
 				title: '就诊信息月统计',
@@ -80,6 +92,14 @@ var initdata = new Vue({
 		this.loadtable();
 	},
 	methods: {
+		selectedPat:function(){
+			this.isShowSelect = false;
+			this.dialogVisible = true;
+		},
+		handleadd: function() {
+			console.log("add:"+this.isShowSelect);
+			this.isShowSelect = true;
+		},
 		loadtable: function() {
 			var that = this;
 			// axios.post(serverurl + 'paApi/dictParm/getPaPageList?parmName=' + this.name + '&pageNum=' + this.currentPage +
@@ -109,10 +129,6 @@ var initdata = new Vue({
 				edit: '',
 				msg: ''
 			}];
-		},
-		handleadd: function() {
-			this.dialogVisible = true;
-			this.examclick = true;
 		},
 		addparam: function(formName) {
 			var that = this;
@@ -229,6 +245,9 @@ var initdata = new Vue({
 		},
 		edittx: function() {
 			this.txdialogVisible = true;
+		},
+		loadpatient(){
+			console.log("load patient ....")
 		}
 	}
 });
