@@ -25,18 +25,25 @@ var initdata = new Vue({
 		pageSize: 10,
 		totalNum: '',
 		dialogVisible: false,
-		examclick: true,
+		isAdd: true,
 		form: {
 			id: '',
 			fullname: '',
 			sex: '',
-			checkList: [],
-			useMethod: '',
-			url: '',
-			imageUrl: '',
-			zujianList: [],
-			tiaojianList: [],
-			texingList: []
+			symptom: [],
+			symptomOther:"",
+			familyHistory: [],
+			p1: [],
+			p2: [],
+			p3: [],
+			p4: [],
+			p5: [],
+			h1: [],
+			h2: [],
+			h3: [],
+			h4: [],
+			h5: [],
+			h6: []
 		},
 		activeName: 'first',
 		hspLists: [{
@@ -95,43 +102,28 @@ var initdata = new Vue({
 			// 	that.tableData = res.data.data.pageData;
 			// });
 		},
-		handleAvatarSuccess(res, file) {
-			this.form.imageUrl = URL.createObjectURL(file.raw);
-		},
-		beforeAvatarUpload(file) {
-			const isJPG = file.type === 'image/jpeg' || 'image/png';
-			const isLt2M = file.size / 1024 / 1024 < 2;
+		initform(){
+			this.form = {};
+			this.form.symptom = [];
+			this.form.familyHistory = [];
+			this.form.p1=[];
+			this.form.p101=[];
+			this.form.p2=[];
+			this.form.p3=[];
+			this.form.p4=[];
+			this.form.p5=[];
+			this.form.h1=[];
+			this.form.h2=[];
+			this.form.h3=[];
+			this.form.h4=[];
+			this.form.h5=[];
+			this.form.h6=[];
 
-			if (!isJPG) {
-				this.$message.error('上传头像图片只能是 JPG或PNG 格式!');
-			}
-			if (!isLt2M) {
-				this.$message.error('上传头像图片大小不能超过 2MB!');
-			}
-			return isJPG && isLt2M;
 		},
 		handleadd: function() {
-			this.form.parmValue=1;
-			this.form.zujianList = [{
-				biaoshi: '',
-				name: '',
-				zujian: '',
-				zhihbiao: ""
-			}];
-			this.form.tiaojianList = [{
-				bianma: '',
-				ziduan: '',
-				name: ''
-			}];
-			this.form.texingList = [{
-				shuxing: '',
-				value: '',
-				type: '',
-				edit: '',
-				msg: ''
-			}];
+			this.initform();
 			this.dialogVisible = true;
-			this.examclick = true;
+			this.isAdd = true;
 		},
 		addparam: function(formName) {
 			var that = this;
@@ -161,30 +153,13 @@ var initdata = new Vue({
 		},
 		// 关闭弹出框
 		closeDialog: function() {
-			this.form = {};
+			this.initform();
 		},
 		handleEdit: function(index, row) {
-			this.form = Object.assign({}, row);
-			this.form.zujianList = [{
-				biaoshi: '',
-				name: '',
-				zujian: '',
-				zhihbiao: ""
-			}];
-			this.form.tiaojianList = [{
-				bianma: '',
-				ziduan: '',
-				name: ''
-			}];
-			this.form.texingList = [{
-				shuxing: '',
-				value: '',
-				type: '',
-				edit: '',
-				msg: ''
-			}];
+			this.initform();
+			this.form = Object.assign(this.form, row);
 			this.dialogVisible = true;
-			this.examclick = false;
+			this.isAdd = false;
 		},
 		editparam: function(formName) {
 			var that = this;

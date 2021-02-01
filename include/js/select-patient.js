@@ -15,8 +15,7 @@ var selectPatientWidget = Vue.component('select-patient', {
       return {
         list: [],
         selectedOne:{},
-		form:{fullname:""},
-		patients:[]
+		form:{fullname:""}
       }
     },
 	template: `
@@ -33,7 +32,7 @@ var selectPatientWidget = Vue.component('select-patient', {
 						</el-col>
 					</el-row>
 				</el-form>
-				<el-table :data="patients" style="width: 100%" stripe="true">
+				<el-table :data="list" style="width: 100%" stripe="true">
 					</el-table-column>
 						<el-table-column type="index" width="50" label="序号">
 					</el-table-column>
@@ -68,7 +67,6 @@ var selectPatientWidget = Vue.component('select-patient', {
 			</div>
               `,
     mounted: function () {
-      
     },
     watch: {
       chartData: {
@@ -78,23 +76,27 @@ var selectPatientWidget = Vue.component('select-patient', {
       }
     },
     methods: {
-		selectedPat:function(){
-			this.isShowSelect = false;
-			this.dialogVisible = true;
-		},
-		handleadd: function() {
-			console.log("add:"+this.isShowSelect);
-			this.isShowSelect = true;
+		selectedPat:function(index,patient){
+			this.$emit("selected-patient",patient)
 		},
 		loadpatient: function() {
-
+			this.list=[{
+				fullname:"张三",
+				sex:"男",
+				birthday:"2019-01-01",
+				address:"郑州市xxxx",
+				patientid:"001009008001001"
+			},{
+				fullname:"里斯本",
+				sex:"女",
+				birthday:"2010-01-01",
+				address:"郑州市xxxx",
+				patientid:"002009009002002"
+			}]
 		},
         closeDialog(){
 
-        },
-        loadtable(){
-
-        }    
+        }  
     }
   })
   

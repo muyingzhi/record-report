@@ -19,17 +19,7 @@
 			<tr>
 				<td>姓名</td>
 				<td>
-					<el-input v-model="name" placeholder="请输入" size="small"></el-input>
-				</td>
-				<td class="ar" width="100px">年龄</td>
-				<td>
-					<el-select v-model="age" size="small" placeholder="请选择">
-						<el-option label="0-14" :value="0"></el-option>
-						<el-option label="14-30" :value="1"></el-option>
-						<el-option label="31-45" :value="2"></el-option>
-						<el-option label="46-65" :value="3"></el-option>
-						<el-option label="65-80" :value="4"></el-option>
-					</el-select>
+					<el-input v-model="fullname" placeholder="请输入" size="small"></el-input>
 				</td>
 				<td><a class="bluebtn mr20 ml40" @click="loadtable"><img src="../include/images/table/cx.png" alt="">
 						查询</a> <a class="bluebtn" @click="handleadd"><i class="el-icon-plus"></i> 新增</a></td>
@@ -44,9 +34,9 @@
 					<span>{{ scope.row.fullname }}</span>
 				</template>
 			</el-table-column>
-			<el-table-column label="年龄">
+			<el-table-column label="出生日期">
 				<template slot-scope="scope">
-					<span>{{ scope.row.age }}</span>
+					<span>{{ scope.row.birthday }}</span>
 				</template>
 			</el-table-column>
 			<el-table-column label="性别">
@@ -56,12 +46,12 @@
 			</el-table-column>
 			<el-table-column label="民族">
 				<template slot-scope="scope">
-					<span>{{ scope.row.num }}</span>
+					<span>{{ scope.row.nation }}</span>
 				</template>
 			</el-table-column>
 			<el-table-column label="登记时间">
 				<template slot-scope="scope">
-					<span>{{ scope.row.cishu }}</span>
+					<span>{{ scope.row.createDate }}</span>
 				</template>
 			</el-table-column>
 			<el-table-column label="状态">
@@ -86,12 +76,12 @@
 
 		<!-- 新增编辑模板弹框	 -->
 		<el-dialog title="新增客户" :visible.sync="dialogVisible" width="900px" @close="closeDialog">
-			<div slot="title" v-if="examclick">新增</div>
+			<div slot="title" v-if="isAdd">新增</div>
 			<div slot="title" v-else>编辑</div>
 			<el-form :model="form" :rules="rules" ref="form" label-width="80px" label-position="right"
 				class="elrulesform">
-				<el-row :gutter="24"><h2>一、一般资料</h2></el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10"><h3>一、一般资料</h3></el-row>
+				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="姓名" prop="fullname">
 							<el-input v-model="form.fullname" placeholder="请输入" size="small"></el-input>
@@ -114,7 +104,7 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="身份证号">
 							<el-input v-model="form.cardno" placeholder="请输入" size="small"></el-input>
@@ -131,7 +121,7 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="身高">
 							<el-input v-model="form.height" placeholder="请输入" size="small"></el-input>
@@ -143,17 +133,17 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
-						<el-form-item label="BMI指数" prop="url">
+						<el-form-item label="BMI指数">
 							<el-input v-model="form.bmi" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
-						<el-form-item label="电话" prop="url">
+						<el-form-item label="电话">
 							<el-input v-model="form.phone" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="体温">
 							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
@@ -165,66 +155,74 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
-						<el-form-item label="心率" prop="url">
+						<el-form-item label="心率">
 							<el-input v-model="form.heartrate" placeholder="请输入" size="small"></el-input>次/分
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
-						<el-form-item label="呼吸" prop="url">
+						<el-form-item label="呼吸">
 							<el-input v-model="form.breathe" placeholder="请输入" size="small"></el-input>次/分
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24"><h2>二、基本情况（有无以下症状）</h2></el-row>
-				<el-checkbox-group v-model="form.checkList" style="font-size:16px;">
-					<el-row :gutter="20">
-						<el-col :span="24">
-							<el-form-item >
-								<el-checkbox label="胸闷" size="medium"></el-checkbox>
-								<el-checkbox label="胸痛" size="medium"></el-checkbox>
-								<el-checkbox label="心慌" size="medium"></el-checkbox>
-								<el-checkbox label="头痛" size="medium"></el-checkbox>
-								<el-checkbox label="头晕" size="medium"></el-checkbox>
-							</el-form-item>
-						</el-col>
-					</el-row>
-					<el-row :gutter="20">
-						<el-col :span="24">
-							<el-form-item >
-								<el-checkbox label="失眠" size="medium"></el-checkbox>
-								<el-checkbox label="便秘" size="medium"></el-checkbox>
-								<el-checkbox label="腹胀、反酸" size="medium"></el-checkbox>
-								<el-checkbox label="易疲劳" size="medium"></el-checkbox>
-							</el-form-item>
-						</el-col>
-					</el-row>
+				<el-row :gutter="10"><h3>二、基本情况（有无以下症状）</h3></el-row>
+				<el-row :gutter="10">
+					<el-col :span="24">
+						<el-form-item >
+							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox label="胸闷" size="medium"></el-checkbox>
+							<el-checkbox label="胸痛" size="medium"></el-checkbox>
+							<el-checkbox label="心慌" size="medium"></el-checkbox>
+							<el-checkbox label="头痛" size="medium"></el-checkbox>
+							<el-checkbox label="头晕" size="medium"></el-checkbox>
+							</el-checkbox-group>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row :gutter="10">
+					<el-col :span="24">
+						<el-form-item >
+							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox label="失眠" size="medium"></el-checkbox>
+							<el-checkbox label="便秘" size="medium"></el-checkbox>
+							<el-checkbox label="腹胀、反酸" size="medium"></el-checkbox>
+							<el-checkbox label="易疲劳" size="medium"></el-checkbox>
+							</el-checkbox-group>
+						</el-form-item>
+					</el-col>
+				</el-row>
 
-					<el-row :gutter="20">
-						<el-col :span="24">
-							<el-form-item >
-								<el-checkbox label="注意力难以集中" size="medium"></el-checkbox>
-								<el-checkbox label="排尿异常（尿频、尿急、尿痛）" size="medium"></el-checkbox>
-							</el-form-item>
-						</el-col>
-					</el-row>
-					<el-row :gutter="20">
-						<el-col :span="9">
-							<el-form-item >
-								<el-checkbox label="焦虑" size="medium"></el-checkbox>
-								<el-checkbox label="无" size="medium"></el-checkbox>
-								<el-checkbox label="其他" size="medium"></el-checkbox>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
-						</el-col>
-					</el-row>
-				</el-checkbox-group>
-				<el-row :gutter="24"><h2>三、家族史（包括父母、兄弟姐妹、祖父母）</h2></el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
+					<el-col :span="24">
+						<el-form-item >
+							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox label="注意力难以集中" size="medium"></el-checkbox>
+							<el-checkbox label="排尿异常（尿频、尿急、尿痛）" size="medium"></el-checkbox>
+							</el-checkbox-group>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row :gutter="10">
+					<el-col :span="9">
+						<el-form-item >
+							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox label="焦虑" size="medium"></el-checkbox>
+							<el-checkbox label="无" size="medium"></el-checkbox>
+							<el-checkbox label="其他" size="medium"></el-checkbox>
+							</el-checkbox-group>
+						</el-form-item>
+					</el-col>
+					<el-col :span="6">
+						<el-input v-model="form.symptomOther" placeholder="请输入" size="small"></el-input>
+					</el-col>
+				</el-row>
+				<el-row :gutter="10"><h3>三、家族史（包括父母、兄弟姐妹、祖父母）</h3></el-row>
+				<el-row :gutter="10">
 					<el-col :span="1">
 						<el-form-item >
-							<el-checkbox label="癌症  " size="medium"></el-checkbox>
+							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
+							<el-checkbox label="癌症" size="medium"></el-checkbox>
+							</el-checkbox-group>
 						</el-form-item></el-col>
 					<el-col :span="1">&nbsp;</el-col>
 					<el-col :span="5">
@@ -236,7 +234,7 @@
 					<el-col :span="5">
 						<el-form-item >是否健在</el-form-item></el-col>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-form-item>
 					<el-col :span="1">&nbsp;</el-col>
 					<el-col :span="1">1</el-col>
@@ -246,7 +244,7 @@
 					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
 				</el-form-item>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-form-item >
 					<el-col :span="1">&nbsp;</el-col>
 					<el-col :span="1">2</el-col>
@@ -257,64 +255,80 @@
 					</el-form-item>
 				</el-row>
 				
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
+							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
 							<el-checkbox label="高血压" size="medium"></el-checkbox>
 							<el-checkbox label="糖尿病" size="medium"></el-checkbox>
 							<el-checkbox label="心血管疾病" size="medium"></el-checkbox>
 							<el-checkbox label="肝肾疾病" size="medium"></el-checkbox>
+							</el-checkbox-group>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
+							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
 							<el-checkbox label="呼吸道疾病" size="medium"></el-checkbox>
 							<el-checkbox label="胃肠道疾病" size="medium"></el-checkbox>
 							<el-checkbox label="风湿类疾病" size="medium"></el-checkbox>
 							<el-checkbox label="其它" size="medium"></el-checkbox>
 							<el-checkbox label="无" size="medium"></el-checkbox>
+							</el-checkbox-group>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24"><h2>四、个人病史</h2></el-row>
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10"><h3>四、个人病史</h3></el-row>
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">1、你是否做过胃肠镜？
+						</el-form-item>
+					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p1" style="font-size:16px;">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p1Date" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">&nbsp;&nbsp;&nbsp;&nbsp;是否有胃肠息肉？
+						</el-form-item>
+					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p101" style="font-size:16px;">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p101Date" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
 				
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">2、是否有个人疾病史？
-							<el-checkbox label="是" size="medium"></el-checkbox>
-							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-form-item>
 					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p2" style="font-size:16px;">
+							<el-checkbox label="是" size="medium"></el-checkbox>
+							<el-checkbox label="否" size="medium"></el-checkbox>
+						</el-checkbox-group>
+					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（1）</label>
@@ -322,21 +336,21 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Diagnose" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="确诊时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Date" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="目前情况">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Status" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（2）</label>
@@ -344,30 +358,34 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Diagnose" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="确诊时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Date" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="目前情况">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Status" placeholder="请输入" size="small"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
 				
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">3、您是否有手术史？
-							<el-checkbox label="是" size="medium"></el-checkbox>
-							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-form-item>
 					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p3" style="font-size:16px;">
+							<el-checkbox label="是" size="medium"></el-checkbox>
+							<el-checkbox label="否" size="medium"></el-checkbox>
+						</el-checkbox-group>
+					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（1）</label>
@@ -389,7 +407,7 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（2）</label>
@@ -411,15 +429,19 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">4、长期服用药物
-							<el-checkbox label="是" size="medium"></el-checkbox>
-							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-form-item>
 					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p4" style="font-size:16px;">
+							<el-checkbox label="是" size="medium"></el-checkbox>
+							<el-checkbox label="否" size="medium"></el-checkbox>
+						</el-checkbox-group>
+					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（1）</label>
@@ -441,7 +463,7 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="4">
 						<el-form-item label="">
 							<label style="float: right;">（2）</label>
@@ -463,15 +485,19 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="10">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">5、是否有过敏史？
-							<el-checkbox label="是" size="medium"></el-checkbox>
-							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-form-item>
 					</el-col>
+					<el-col :span="4">
+						<el-checkbox-group v-model="form.p5" style="font-size:16px;">
+							<el-checkbox label="是" size="medium"></el-checkbox>
+							<el-checkbox label="否" size="medium"></el-checkbox>
+						</el-checkbox-group>
+					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item>
 						</el-form-item>
@@ -485,19 +511,23 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24"><h2>五、生活习惯</h2></el-row>
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10"><h3>五、生活习惯</h3></el-row>
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">1、您有抽烟的习惯吗？
+						</el-form-item>
+					</el-col>
+					<el-col :span="16">
+						<el-checkbox-group v-model="form.h1" style="font-size:16px;">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
 							<el-checkbox label="已戒烟" size="medium"></el-checkbox>
 							<el-checkbox label="电子烟" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item >
 						</el-form-item>
@@ -518,17 +548,21 @@
 					</el-col>
 				</el-row>
 				
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">2、您有喝酒的习惯吗？
+						</el-form-item>
+					</el-col>
+					<el-col :span="16">
+						<el-checkbox-group v-model="form.h2" style="font-size:16px;">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
 							<el-checkbox label="已戒酒" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item >
 						</el-form-item>
@@ -542,16 +576,20 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">3、您是否有熬夜的习惯？
+						</el-form-item>
+					</el-col>
+					<el-col :span="16">
+						<el-checkbox-group v-model="form.h3" style="font-size:16px;">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item>
 						</el-form-item>
@@ -565,15 +603,19 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">4、您是否良好的喝水习惯？
-							<el-checkbox label="是" size="medium"></el-checkbox>
-							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-form-item>
 					</el-col>
+					<el-col :span="16">
+						<el-checkbox-group v-model="form.h4" style="font-size:16px;">
+							<el-checkbox label="是" size="medium"></el-checkbox>
+							<el-checkbox label="否" size="medium"></el-checkbox>
+						</el-checkbox-group>
+					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item>
 						</el-form-item>
@@ -587,23 +629,31 @@
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10">
+					<el-col :span="8">
 						<el-form-item label="">5、您的饮食习惯？
+						</el-form-item>
+					</el-col>
+					<el-col :span="16">
+						<el-checkbox-group v-model="form.h5" style="font-size:16px;">
 							<el-checkbox label="规律" size="medium"></el-checkbox>
 							<el-checkbox label="不规律" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
-					<el-col :span="20">
+				<el-row :gutter="10">
+					<el-col :span="9">
 						<el-form-item label="">6、（女性）月经史：是否怀孕？
+						</el-form-item>
+					</el-col>
+					<el-col :span="15">
+						<el-checkbox-group v-model="form.h6" style="font-size:16px;">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
-						</el-form-item>
+						</el-checkbox-group>
 					</el-col>
 				</el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10">
 					<el-col :span="2">
 						<el-form-item >
 						</el-form-item>
@@ -623,27 +673,27 @@
 						<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24"><h2>六、其它特殊说明（如异常指标等）</h2></el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10"><h3>六、其它特殊说明（如异常指标等）</h3></el-row>
+				<el-row :gutter="10">
 					<el-col :span="2">
 					</el-col>
 					<el-col :span="22">
 						<el-form-item >
-						<el-input type="textarea" v-model="form.m6"></el-input>
+						<el-input type="textarea" v-model="form.others"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24"><h2>七、是否曾做过细胞治疗（时间、地点、方案、次数）</h2></el-row>
-				<el-row :gutter="20">
+				<el-row :gutter="10"><h3>七、是否曾做过细胞治疗（时间、地点、方案、次数）</h3></el-row>
+				<el-row :gutter="10">
 					<el-col :span="2">
 					</el-col>
 					<el-col :span="22">
 						<el-form-item >
-						<el-input type="textarea" v-model="form.m6"></el-input>
+						<el-input type="textarea" v-model="form.treat"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
-				<el-row :gutter="24">
+				<el-row :gutter="10">
 					<el-col :span="6">&nbsp;</el-col>
 					<el-col :span="6">
 						<el-form-item label="本人签名">							
@@ -663,7 +713,7 @@
 				</el-row>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
-				<a class="bluebtn mr20" @click="addparam('form')" v-if="examclick">保存</a>
+				<a class="bluebtn mr20" @click="addparam('form')" v-if="isAdd">保存</a>
 				<a class="bluebtn mr20" @click="editparam('form')" v-else>保存</a>
 				<a class="graybtn_b" @click="dialogVisible = false">取消</a>
 			</span>

@@ -21,8 +21,7 @@
 					<td>
 						<el-input v-model="fullname" placeholder="请输入" size="small"></el-input>
 					</td>
-					<td><a class="bluebtn mr20 ml40" @click="loadtable"><img src="../include/images/table/cx.png" alt=""> 查询</a> <a
-						 class="bluebtn" @click="handleadd"><i class="el-icon-plus"></i> 新增</a></td>
+					<td><a class="bluebtn mr20 ml40" @click="loadtable"><img src="../include/images/table/cx.png" alt=""> 查询</a></td>
 				</tr>
 			</table>
 			<el-table :data="tableData" style="width: 100%" stripe="true">
@@ -69,7 +68,7 @@
 				<div slot="title" v-if="examclick">新增</div>
 				<div slot="title" v-else>编辑</div>
 				<el-form :model="form" :rules="rules" label-width="100px" label-position="right" ref="form">
-					<el-row :gutter="20">
+					<el-row :gutter="10">
 						<el-col :span="5">
 							<el-form-item label="姓名：">刘开里
 							</el-form-item>
@@ -87,7 +86,7 @@
 							</el-form-item>
 						</el-col>
 					</el-row>
-					<el-row :gutter="20">
+					<el-row :gutter="10">
 						<el-col :span="12">
 							<el-form-item label="评估结果">
 								<el-input v-model="form.followDate" placeholder="请输入" size="small"></el-input>
@@ -99,7 +98,7 @@
 							</el-form-item>
 						</el-col>
 					</el-row>
-					<el-row :gutter="20">
+					<el-row :gutter="10">
 					<a class="bluebtn mr20" @click="handleEdit('form')" v-if="examclick">保存</a>
 					<a class="bluebtn mr20" @click="editparam('form')" v-else>保存</a>
 					<a class="graybtn_b" @click="txdialogVisible = false">取消</a>

@@ -1,63 +1,38 @@
 var initdata = new Vue({
 	el: '.cont',
 	data: {
-		name:'',
+		explanation:'',
 		isShowSelect:false,
 		isShowEdit: false,
-		patients:[{
+		isAdd:true,
+		tableData: [{
+			patientid:"001008008001",
 			fullname:"张三",
 			sex:"男",
 			birthday:"2019-01-01",
-			address:"郑州市xxxx"
+			address:"郑州市xxxx",
+			explanation:"方案一",
+			explantDate: "2010-01-01"
 		},{
+			patientid:"002009009002",
 			fullname:"里斯本",
 			sex:"男",
 			birthday:"2010-01-01",
-			address:"郑州市xxxx"
+			address:"郑州市xxxx",
+			explanation:"方案一",
+			explantDate: "2010-01-01"
 		}],
-		tableData: [{
-				name: "就诊信息统计页面",
-				title: '就诊信息月统计',
-				tpl: "就诊信息模板",
-				oridata: "平台库"
-			},
-			{
-				name: "就诊信息统计页面",
-				title: '就诊信息月统计',
-				tpl: "就诊信息模板",
-				oridata: "平台库"
-			},
-			{
-				name: "就诊信息统计页面",
-				title: '就诊信息月统计',
-				tpl: "就诊信息模板",
-				oridata: "平台库"
-			}
-		],
 		currentPage: 1,
 		pageSize: 10,
 		totalNum: '',
-		examclick: true,
-		tplLists:[{"name":"公共卫生模板"},{"name":"卫生资源模板"},{"name":"医疗服务模板"}],
 		form: {
-			id: '',
-			name: '',
-			type: '',
-			tpl: '',
-			imageUrl: '',
-			srcList: [],
-			zujianList: [],
-			tiaojianList: [],
-			texingList: []
+			patientid: '',
+			fullname: '',
+			sex: '',
+			birthday: '',
+			address: ''
 		},
 		activeName: 'first',
-		hspLists: [{
-			hspName: '门诊人次'
-		}, {
-			hspName: '病床数'
-		}, {
-			hspName: '疾病排名'
-		}],
 		rules: {
 			name: [{
 					required: true,
@@ -91,18 +66,26 @@ var initdata = new Vue({
 		this.loadtable();
 	},
 	methods: {
-		selectedPat:function(){
-			this.isShowSelect = false;
-			this. is = true;
-		},
 		handleadd: function() {
-			console.log("add:"+this.isShowSelect);
+			//点击“新增”，显示客户选择列表，隐藏编辑窗口
 			this.isShowSelect = true;
+			this.isShowEdit = false;
 		},
-		loadpatient: function() {
-
+		selectedPat:function(patient){
+			//选中一个客户，打开编辑窗口，并为form设置初始值
+			this.isShowSelect = false;
+			this.isShowEdit = true;
+			this.form = Object.assign({
+				examDate:new Date(),
+				explantDate:new Date(),
+				nurseName: "刘护士",
+				expertName: "李专家",
+				examItems: []
+			}, patient);
+			this.isAdd = true;
 		},
 		loadtable: function() {
+			//----查询，根据姓名获取客户列表
 			var that = this;
 			// axios.post(serverurl + 'paApi/dictParm/getPaPageList?parmName=' + this.name + '&pageNum=' + this.currentPage +
 			// 	'&pageSize=' + this.pageSize).then(function(res) {
@@ -110,80 +93,17 @@ var initdata = new Vue({
 			// 	that.tableData = res.data.data.pageData;
 			// });
 		},
-		changetpl:function(tplid){
-			this.form.imageUrl = 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg';
-			this.form.srcList = ['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'];
-			this.form.zujianList = [{
-				biaoshi: '',
-				name: '',
-				zujian: '',
-				zhihbiao: ""
-			}];
-			this.form.tiaojianList = [{
-				bianma: '',
-				ziduan: '',
-				name: ''
-			}];
-			this.form.texingList = [{
-				shuxing: '',
-				value: '',
-				type: '',
-				edit: '',
-				msg: ''
-			}];
-		},
-		addparam: function(formName) {
-			var that = this;
-			this.$refs[formName].validate(function(valid) {
-				if (valid) {
-					axios({
-						method: 'post',
-						url: serverurl + 'paApi/dictParm/addHspBaseinfo',
-						params: that.form
-					}).then(
-						function(res) {
-							if (res.data.code == 500) {
-								that.$message({
-									type: 'info',
-									message: res.data.msg
-								});
-								return;
-							}
-							that.loadtable();
-							that. isShow = false;
-						});
-				} else {
-					return false;
-				}
-			});
-
-		},
 		// 关闭弹出框
 		closeDialog: function() {
 			this.form = {};
+			this.form.examItems=[];
 		},
+		//编辑
 		handleEdit: function(index, row) {
+			//当前行记录赋值给form，显示编辑窗口
 			this.form = Object.assign({}, row);
-			this.form.zujianList = [{
-				biaoshi: '001',
-				name: '中间表格',
-				zujian: '柱状组件',
-				zhihbiao: "门诊人次"
-			}];
-			this.form.tiaojianList = [{
-				bianma: '示例',
-				ziduan: '示例',
-				name: '示例'
-			}];
-			this.form.texingList = [{
-				shuxing: '示例',
-				value: '示例',
-				type: '示例',
-				edit: 1,
-				msg: '示例'
-			}];
-			this. isShowEdit = true;
-			this.examclick = false;
+			this.isShowEdit = true;
+			this.isadd = false;
 		},
 		editparam: function(formName) {
 			var that = this;
@@ -203,7 +123,7 @@ var initdata = new Vue({
 								return;
 							}
 							that.loadtable();
-							that. isShowEdit = false;
+							that.isShowEdit = false;
 						});
 				} else {
 					return false;
@@ -212,6 +132,7 @@ var initdata = new Vue({
 
 		},
 		handleDelete: function(index, row) {
+			//删除当前行
 			var that = this;
 			this.$confirm('您确定要删除该记录吗?', '提示', {
 				cancelButtonText: '取消',
@@ -237,13 +158,23 @@ var initdata = new Vue({
 			});
 		},
 		handleSizeChange: function(val) {
+			//行数变化
 			this.pageSize = val;
 			this.currentPage = 1;
 			this.loadtable();
 		},
 		handleCurrentChange: function(val) {
+			//当前页码变化
 			this.currentPage = val;
 			this.loadtable();
+		},
+		saveAdd(){
+			//新增保存
+			console.log(this.form);
+		},
+		saveEdit(){
+			//编辑保存
+			console.log(this.form);
 		}
 	}
 });
