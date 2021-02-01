@@ -34,6 +34,7 @@ var initdata = new Vue({
 			symptomOther:"",
 			familyHistory: [],
 			p1: [],
+			p1One: [],
 			p2: [],
 			p3: [],
 			p4: [],
@@ -45,22 +46,6 @@ var initdata = new Vue({
 			h5: [],
 			h6: []
 		},
-		activeName: 'first',
-		hspLists: [{
-			hspName: '门诊人次'
-		}, {
-			hspName: '病床数'
-		}, {
-			hspName: '疾病排名'
-		}],
-		zujianLists:[{
-			hspName: '柱状图'
-		}, {
-			hspName: '饼状图'
-		}, {
-			hspName: '雷达图'
-		}],
-		txdialogVisible: false,
 		rules: {
 			fullname: [{
 					required: true,
@@ -72,19 +57,9 @@ var initdata = new Vue({
 					message: '最多输入30个字符'
 				}
 			],
-			sex: [{
-					required: true,
-					message: '请选择',
-					trigger: 'blur'
-				},
-				{
-					max: 30,
-					message: '最多输入30个字符'
-				}
-			],
 			birthday: [{
 				required: true,
-				message: '请输入URL',
+				message: '请输入',
 				trigger: 'blur'
 			}]
 		}
@@ -103,11 +78,10 @@ var initdata = new Vue({
 			// });
 		},
 		initform(){
-			this.form = {};
 			this.form.symptom = [];
 			this.form.familyHistory = [];
 			this.form.p1=[];
-			this.form.p101=[];
+			this.form.p1One=[];
 			this.form.p2=[];
 			this.form.p3=[];
 			this.form.p4=[];
@@ -255,6 +229,14 @@ var initdata = new Vue({
 		},
 		edittx: function() {
 			this.txdialogVisible = true;
+		},
+		saveAdd(){
+			//新增保存
+			console.log(this.form);
+		},
+		saveEdit(){
+			//编辑保存
+			console.log(this.form);
 		}
 	}
 });

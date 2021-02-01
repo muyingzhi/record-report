@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="../include/element/index.css" media="all">
 	<link rel="stylesheet" href="../include/style/common.css" media="all">
 	<link rel="stylesheet" href="../include/style/tableList.css">
+	
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 			<tr>
 				<td>姓名</td>
 				<td>
-					<el-input v-model="fullname" placeholder="请输入" size="small"></el-input>
+					<el-input v-model="fullname" placeholder="请输入" size="mini"></el-input>
 				</td>
 				<td><a class="bluebtn mr20 ml40" @click="loadtable"><img src="../include/images/table/cx.png" alt="">
 						查询</a> <a class="bluebtn" @click="handleadd"><i class="el-icon-plus"></i> 新增</a></td>
@@ -84,7 +85,7 @@
 				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="姓名" prop="fullname">
-							<el-input v-model="form.fullname" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.fullname" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
@@ -95,73 +96,73 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="出生日期" prop="birthday">
-							<el-input v-model="form.birthday" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.birthday" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="民族" prop="nation">
-							<el-input v-model="form.nation" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.nation" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="身份证号">
-							<el-input v-model="form.cardno" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.cardno" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="地址">
-							<el-input v-model="form.address" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.address" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="婚史">
-							<el-input v-model="form.marriage" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.marriage" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="身高">
-							<el-input v-model="form.height" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.height" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="体重">
-							<el-input v-model="form.weight" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.weight" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="BMI指数">
-							<el-input v-model="form.bmi" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.bmi" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="电话">
-							<el-input v-model="form.phone" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.phone" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10">
 					<el-col :span="6">
 						<el-form-item label="体温">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.temperature" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="血压">
-							<el-input v-model="form.bloodpressure" placeholder="请输入" size="small"></el-input>mmHg
+							<el-input v-model="form.bloodpressure" placeholder="请输入" size="mini"></el-input>mmHg
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="心率">
-							<el-input v-model="form.heartrate" placeholder="请输入" size="small"></el-input>次/分
+							<el-input v-model="form.heartrate" placeholder="请输入" size="mini"></el-input>次/分
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="呼吸">
-							<el-input v-model="form.breathe" placeholder="请输入" size="small"></el-input>次/分
+							<el-input v-model="form.breathe" placeholder="请输入" size="mini"></el-input>次/分
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -169,7 +170,7 @@
 				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
-							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox-group v-model="form.symptom">
 							<el-checkbox label="胸闷" size="medium"></el-checkbox>
 							<el-checkbox label="胸痛" size="medium"></el-checkbox>
 							<el-checkbox label="心慌" size="medium"></el-checkbox>
@@ -182,7 +183,7 @@
 				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
-							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox-group v-model="form.symptom">
 							<el-checkbox label="失眠" size="medium"></el-checkbox>
 							<el-checkbox label="便秘" size="medium"></el-checkbox>
 							<el-checkbox label="腹胀、反酸" size="medium"></el-checkbox>
@@ -195,7 +196,7 @@
 				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
-							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox-group v-model="form.symptom">
 							<el-checkbox label="注意力难以集中" size="medium"></el-checkbox>
 							<el-checkbox label="排尿异常（尿频、尿急、尿痛）" size="medium"></el-checkbox>
 							</el-checkbox-group>
@@ -205,7 +206,7 @@
 				<el-row :gutter="10">
 					<el-col :span="9">
 						<el-form-item >
-							<el-checkbox-group v-model="form.symptom" style="font-size:16px;">
+							<el-checkbox-group v-model="form.symptom">
 							<el-checkbox label="焦虑" size="medium"></el-checkbox>
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="其他" size="medium"></el-checkbox>
@@ -213,14 +214,14 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
-						<el-input v-model="form.symptomOther" placeholder="请输入" size="small"></el-input>
+						<el-input v-model="form.symptomOther" placeholder="请输入" size="mini"></el-input>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10"><h3>三、家族史（包括父母、兄弟姐妹、祖父母）</h3></el-row>
 				<el-row :gutter="10">
 					<el-col :span="1">
 						<el-form-item >
-							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
+							<el-checkbox-group v-model="form.familyHistory">
 							<el-checkbox label="癌症" size="medium"></el-checkbox>
 							</el-checkbox-group>
 						</el-form-item></el-col>
@@ -238,27 +239,27 @@
 					<el-form-item>
 					<el-col :span="1">&nbsp;</el-col>
 					<el-col :span="1">1</el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai01" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai02" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai03" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai04" placeholder="请输入" size="mini"></el-input></el-col>
 				</el-form-item>
 				</el-row>
 				<el-row :gutter="10">
 					<el-form-item >
 					<el-col :span="1">&nbsp;</el-col>
 					<el-col :span="1">2</el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
-					<el-col :span="5"><el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai11" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai12" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai13" placeholder="请输入" size="mini"></el-input></el-col>
+					<el-col :span="5"><el-input v-model="form.ai14" placeholder="请输入" size="mini"></el-input></el-col>
 					</el-form-item>
 				</el-row>
 				
 				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
-							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
+							<el-checkbox-group v-model="form.familyHistory">
 							<el-checkbox label="高血压" size="medium"></el-checkbox>
 							<el-checkbox label="糖尿病" size="medium"></el-checkbox>
 							<el-checkbox label="心血管疾病" size="medium"></el-checkbox>
@@ -270,7 +271,7 @@
 				<el-row :gutter="10">
 					<el-col :span="24">
 						<el-form-item >
-							<el-checkbox-group v-model="form.familyHistory" style="font-size:16px;">
+							<el-checkbox-group v-model="form.familyHistory">
 							<el-checkbox label="呼吸道疾病" size="medium"></el-checkbox>
 							<el-checkbox label="胃肠道疾病" size="medium"></el-checkbox>
 							<el-checkbox label="风湿类疾病" size="medium"></el-checkbox>
@@ -287,14 +288,14 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p1" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p1">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="时间">
-							<el-input v-model="form.p1Date" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p1Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -304,14 +305,14 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p101" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p1One">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="时间">
-							<el-input v-model="form.p101Date" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p1OneDate" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -322,7 +323,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p2" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p2">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -336,17 +337,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.p201Diagnose" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Diagnose" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="确诊时间">
-							<el-input v-model="form.p201Date" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="目前情况">
-							<el-input v-model="form.p201Status" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p201Status" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -358,17 +359,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.p202Diagnose" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Diagnose" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="确诊时间">
-							<el-input v-model="form.p202Date" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="目前情况">
-							<el-input v-model="form.p202Status" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p202Status" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -379,7 +380,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p3" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p3">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -393,17 +394,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p301Diagnose" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="手术时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p301Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="手术名称">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p301Name" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -415,17 +416,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="疾病诊断">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p302Diagnose" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="手术时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p302Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="手术名称">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p302Name" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -435,7 +436,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p4" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p4">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -449,17 +450,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="药物名称">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p401Name" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="起始时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p401Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="服用方法">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p401Usage" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -471,17 +472,17 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="药物名称">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p402Name" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="起始时间">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p402Date" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="服用方法">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p402Usage" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -491,7 +492,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="4">
-						<el-checkbox-group v-model="form.p5" style="font-size:16px;">
+						<el-checkbox-group v-model="form.p5">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -507,7 +508,7 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item label="">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.p5Name" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -518,7 +519,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="16">
-						<el-checkbox-group v-model="form.h1" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h1">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
@@ -534,14 +535,14 @@
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="吸烟">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.h1Years" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="1">
 						年
 					</el-col>
 					<el-col :span="4">
-						<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+						<el-input v-model="form.h1Few" placeholder="请输入" size="mini"></el-input>
 					</el-col>
 					<el-col :span="1" style="width:200px;">
 						根/天
@@ -554,7 +555,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="16">
-						<el-checkbox-group v-model="form.h2" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h2">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
@@ -572,7 +573,7 @@
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.h2Text" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -582,7 +583,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="16">
-						<el-checkbox-group v-model="form.h3" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h3">
 							<el-checkbox label="无" size="medium"></el-checkbox>
 							<el-checkbox label="偶尔" size="medium"></el-checkbox>
 							<el-checkbox label="经常" size="medium"></el-checkbox>
@@ -599,7 +600,7 @@
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.h3Time" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -609,7 +610,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="16">
-						<el-checkbox-group v-model="form.h4" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h4">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -625,7 +626,7 @@
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.h4Many" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -635,7 +636,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="16">
-						<el-checkbox-group v-model="form.h5" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h5">
 							<el-checkbox label="规律" size="medium"></el-checkbox>
 							<el-checkbox label="不规律" size="medium"></el-checkbox>
 						</el-checkbox-group>
@@ -647,30 +648,29 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="15">
-						<el-checkbox-group v-model="form.h6" style="font-size:16px;">
+						<el-checkbox-group v-model="form.h6">
 							<el-checkbox label="是" size="medium"></el-checkbox>
 							<el-checkbox label="否" size="medium"></el-checkbox>
 						</el-checkbox-group>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10">
-					<el-col :span="2">
-						<el-form-item >
-						</el-form-item>
-					</el-col>
-					<el-col :span="1" style="width:150px">
+					<el-col :span="1" :offset="2" style="width:150px">
 							<span style="float: right;">末次月经日期</span>
 					</el-col>
-					<el-col :span="6">
-						<el-form-item label="">
-							<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
-						</el-form-item>
+					<el-col :span="7">
+							<el-date-picker
+								v-model="form.h6Date"
+								type="date"
+								placeholder="选择日期"
+								size="mini">
+								</el-date-picker>
 					</el-col>
 					<el-col :span="1" style="width:150px">
 							<span style="float: right;">周期（天数）</span>
 					</el-col>
 					<el-col :span="4">
-						<el-input v-model="form.temperature" placeholder="请输入" size="small"></el-input>
+						<el-input v-model="form.h6Days" placeholder="请输入" size="mini"></el-input>
 					</el-col>
 				</el-row>
 				<el-row :gutter="10"><h3>六、其它特殊说明（如异常指标等）</h3></el-row>
@@ -694,27 +694,31 @@
 					</el-col>
 				</el-row>
 				<el-row :gutter="10">
-					<el-col :span="6">&nbsp;</el-col>
-					<el-col :span="6">
+					<el-col :span="6" :offset="2">
 						<el-form-item label="本人签名">							
-							<el-input v-model="form.fullname" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.fullname" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="6">
 						<el-form-item label="护士签名">
-							<el-input v-model="form.nursename" placeholder="请输入" size="small"></el-input>
+							<el-input v-model="form.nursename" placeholder="请输入" size="mini"></el-input>
 						</el-form-item>
 					</el-col>
-					<el-col :span="6">
-						<el-form-item label="填表日期">							
-							<el-input v-model="form.createDate" placeholder="请输入" size="small"></el-input>
+					<el-col :span="5">
+						<el-form-item label="填表日期">	
+							<el-date-picker
+								v-model="form.createDate"
+								type="date"
+								placeholder="选择日期"
+								size="mini">
+								</el-date-picker>						
 						</el-form-item>
 					</el-col>
 				</el-row>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
-				<a class="bluebtn mr20" @click="addparam('form')" v-if="isAdd">保存</a>
-				<a class="bluebtn mr20" @click="editparam('form')" v-else>保存</a>
+				<a class="bluebtn mr20" @click="saveAdd('form')" v-if="isAdd">保存</a>
+				<a class="bluebtn mr20" @click="saveEdit('form')" v-else>保存</a>
 				<a class="graybtn_b" @click="dialogVisible = false">取消</a>
 			</span>
 		</el-dialog>
