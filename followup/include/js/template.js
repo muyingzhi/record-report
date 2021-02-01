@@ -93,12 +93,10 @@ var initdata = new Vue({
 	},
 	methods: {
 		selectedPat:function(){
-			this.isShowSelect = false;
-			this.dialogVisible = true;
 		},
 		handleadd: function() {
-			console.log("add:"+this.isShowSelect);
 			this.isShowSelect = true;
+			this.dialogVisible = false;
 		},
 		loadtable: function() {
 			var that = this;

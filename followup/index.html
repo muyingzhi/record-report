@@ -180,6 +180,10 @@
 					</el-table-column>
 				</el-table>
 			</el-dialog>
+			
+			<el-dialog title="请选择" :visible.sync="isShowSelect" width="800px" @close="closeDialog">
+				<select-patient></select-patient>
+			</el-dialog>
 		</div>
 		<script src="../include/lib/polyfill.min.js"></script>
 		<script src="../include/lib/browser.min.js"></script>
@@ -188,7 +192,7 @@
 		<script src="../include/element/index.js"></script>
 		<script src="../include/lib/axios.min.js"></script>
 		<script src="../include/lib/config.js"></script>
-		<script src="../include/js/selectPatient.js"></script>
+		<script src="../include/js/select-patient.js"></script>
 		<script src="include/js/template.js"></script>
 	</body>
 </html>

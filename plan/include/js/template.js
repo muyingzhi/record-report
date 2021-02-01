@@ -3,6 +3,7 @@ var initdata = new Vue({
 	data: {
 		name:'',
 		isShowSelect:false,
+		isShowEdit: false,
 		patients:[{
 			fullname:"张三",
 			sex:"男",
@@ -36,7 +37,6 @@ var initdata = new Vue({
 		currentPage: 1,
 		pageSize: 10,
 		totalNum: '',
-		dialogVisible: false,
 		examclick: true,
 		tplLists:[{"name":"公共卫生模板"},{"name":"卫生资源模板"},{"name":"医疗服务模板"}],
 		form: {
@@ -58,7 +58,6 @@ var initdata = new Vue({
 		}, {
 			hspName: '疾病排名'
 		}],
-		txdialogVisible: false,
 		rules: {
 			name: [{
 					required: true,
@@ -94,7 +93,7 @@ var initdata = new Vue({
 	methods: {
 		selectedPat:function(){
 			this.isShowSelect = false;
-			this.dialogVisible = true;
+			this. is = true;
 		},
 		handleadd: function() {
 			console.log("add:"+this.isShowSelect);
@@ -151,7 +150,7 @@ var initdata = new Vue({
 								return;
 							}
 							that.loadtable();
-							that.dialogVisible = false;
+							that. isShow = false;
 						});
 				} else {
 					return false;
@@ -183,7 +182,7 @@ var initdata = new Vue({
 				edit: 1,
 				msg: '示例'
 			}];
-			this.dialogVisible = true;
+			this. isShowEdit = true;
 			this.examclick = false;
 		},
 		editparam: function(formName) {
@@ -204,7 +203,7 @@ var initdata = new Vue({
 								return;
 							}
 							that.loadtable();
-							that.dialogVisible = false;
+							that. isShowEdit = false;
 						});
 				} else {
 					return false;
@@ -245,9 +244,6 @@ var initdata = new Vue({
 		handleCurrentChange: function(val) {
 			this.currentPage = val;
 			this.loadtable();
-		},
-		edittx: function() {
-			this.txdialogVisible = true;
 		}
 	}
 });
